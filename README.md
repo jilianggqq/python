@@ -11,3 +11,7 @@ gqq python learning
 - hello.py 定义模块
 - imagetest.py 测试第三方模块
 - testhello.py 测试自定义模块
+
+## object
+- student.py class student
+- studenttest.py test class student
