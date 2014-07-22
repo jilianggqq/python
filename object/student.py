@@ -3,9 +3,15 @@
 
 class student(object):
 	"""docstring for student"""
+	# __slots__ = ('attr1', 'attr2', '_student__name', '_student__age')
 	def __init__(self, name, age):
 		self.__name = name
 		self.__age = age
+
+	def  __str__(self):
+		return 'student %s is %d years old' %(self.__name, self.__age)
+
+	__repr__ = __str__
 
 	def get_name(self):
 		return self.__name
@@ -31,21 +37,53 @@ class student(object):
 		else:
 			return 'no such method'
 
+	@property
+	def score(self):
+		print 'get score:'
+		return self._score
 
-## test
-stu=student('Zhangsan', 20)
+	@score.setter
+	def score(self, value):
+		print 'set score:', value
+		if not isinstance(value, int):
+			raise ValueError('成绩必须是整形!')
+		if value < 0 or value > 100:
+			raise ValueError('成绩必须在0到100之间!')
+		self._score = value
+	
 
-print isinstance(stu, student)
-print isinstance(stu, object)
 
-print stu.get_age()
-print stu.get_name()
+print '__name__ is:', __name__
+if __name__=='__main__':
+	## test
+	stu=student('Zhangsan', 20)
 
-# __len__的特殊性
-print len(stu)
-# 如果要获得一个对象的所有属性和方法，可以使用dir()函数，它返回一个包含字符串的list，比如，获得一个str对象的所有属性和方法：
-print dir(stu)
+	print isinstance(stu, student)
+	print isinstance(stu, object)
 
-print stu.is_old()
+	print stu.get_age()
+	print stu.get_name()
 
-print stu.hasmethod('is_old')
+	# __len__的特殊性
+	print len(stu)
+	# 如果要获得一个对象的所有属性和方法，可以使用dir()函数，它返回一个包含字符串的list，比如，获得一个str对象的所有属性和方法：
+	print dir(stu)
+
+	print stu.is_old()
+
+	print stu.hasmethod('is_old')
+
+	# 通过反射知道类的信息和对象的dict（可以修改的属性，以dict方式表示）
+	print student.__name__
+	print stu.__dict__
+
+	# 动态创建一个类的对象
+	# stu2 = type('student', (object,), dict(__name='aaa', __age=32))
+	# print dir(stu2)
+	# print type(stu)
+	# print type(stu2)
+	# print stu2.__name
+	# print stu2.__age
+
+
+

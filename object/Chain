@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+class Chain(object):
+	"""docstring for Chain"""
+	def __init__(self, arg=''):
+		self._path = arg
+
+	def __getattr__(self, path):
+		return Chain('%s/%s' % (self._path, path))
+	
+	def __str__(self):
+		return self._path
+
+	def user(self, value):
+		return Chain('users/:%s' %value)
+		
+
+## test
+c = Chain().user('gqq').test2.test3
+c2 = Chain().user('zay').test2.test3
+print c,c2
+
+print callable(c)

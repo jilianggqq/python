@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+def printHello(self):
+	print 'Hello, %s' %(self.name)
+
+Hello = type('Hello', (object,), dict(printHello = printHello, name = ''))
+
+h = Hello()
+h.name = 'gqq'
+h.printHello()
+
+
+h2 = Hello()
+# h2.name = 'gqq'
+h2.printHello()
