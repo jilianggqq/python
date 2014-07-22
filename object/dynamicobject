@@ -4,13 +4,24 @@
 def printHello(self):
 	print 'Hello, %s' %(self.name)
 
-Hello = type('Hello', (object,), dict(printHello = printHello, name = ''))
+Hello = type('Hello', (object,), dict(printHello = printHello, name = '123'))
 
+# 特别注意，name是类属性，而不是实例的属性
+print Hello.name
 h = Hello()
+# 打印name属性，因为实例并没有name属性，所以会继续查找class的name属性：
+print h.name
 h.name = 'gqq'
+
+# 由于实例属性优先级比类属性高，因此，它会屏蔽掉类的name属性
 h.printHello()
+print h.__dict__
+# 但是类属性并未消失，用Student.name仍然可以访问：
+print Hello.name
 
-
-h2 = Hello()
+# 再次调用s.name，由于实例的name属性没有找到，类的name属性就显示出来了：
+del h.name
+print h.name
+# h2 = Hello()
 # h2.name = 'gqq'
-h2.printHello()
+# h2.printHello()
