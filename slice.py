@@ -26,6 +26,7 @@ print '#############################print key value#############################
 for k, v in dict.iteritems():
     print k, v
 
+print range(1,10)
 print [x * x for x in range(1, 10) if x % 2 == 0]
 
 kandv = [k + '+' + v for k, v in dict.iteritems()]
