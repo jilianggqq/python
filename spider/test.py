@@ -22,3 +22,7 @@ contents = [u'\n\n\u7ed9\u8fc7\u4e48\uff1f\u2026\u2026\u2026\u2026\u2026\u4eca\u
 print contents[0].encode('utf-8').strip()
 # print contents[1]
 # print contents[2]
+
+arr1 = ['abc', 'def']
+for i, str1 in enumerate(arr1):
+	print str(i) + " " + str1
