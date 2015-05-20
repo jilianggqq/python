@@ -27,4 +27,12 @@ arr1 = ['abc', 'def']
 for i, str1 in enumerate(arr1):
 	print str(i) + " " + str1
 
+print r"%d" % (3)
+str = r"%10d" % (2048)
+str += chr(8) * (len(str) + 1)
+str = r"%10d" % (4096)
+str += chr(8) * (len(str) + 1)
+str = r"%10d" % (65536)
+str += chr(8) * (len(str) + 1)
+print str
 	
