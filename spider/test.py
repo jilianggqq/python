@@ -26,3 +26,5 @@ print contents[0].encode('utf-8').strip()
 arr1 = ['abc', 'def']
 for i, str1 in enumerate(arr1):
 	print str(i) + " " + str1
+
+	
