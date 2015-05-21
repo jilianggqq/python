@@ -12,7 +12,7 @@ class DownloadFile(object):
 
     subfolder = time.strftime('%Y%m%d') + "download/"
 
-    def __init__(self, filename, url, based='/home/peter/Music/'):
+    def __init__(self, filename, url, based='~/Music/'):
         self.dictionary = based + DownloadFile.subfolder
         # if directory does not exist, create a new one
         if(not os.path.exists(self.dictionary)):
@@ -38,7 +38,7 @@ class DownloadFile(object):
             file_size_dl += len(buffer)
             f.write(buffer)
             status = r"%10d  [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
-            # print chr(8) * (len(status) + 1)
+            # delete output every time, add new progress
             status = status + chr(8) * (len(status) + 1)
             print status,
         f.close()
