@@ -3,13 +3,21 @@
 __author__ = 'PETER'
 
 import urllib2
+import time
+import os
+import sys
 
 
 class DownloadFile(object):
 
-    def __init__(self, filename, url):
-        # super(DownloadFile, self).__init__()
-        self.filename = filename
+    subfolder = time.strftime('%Y%m%d') + "download/"
+
+    def __init__(self, filename, url, based='/home/peter/Music/'):
+        self.dictionary = based + DownloadFile.subfolder
+        # if directory does not exist, create a new one
+        if(not os.path.exists(self.dictionary)):
+            os.makedirs(self.dictionary, 0755)
+        self.filename = self.dictionary + filename
         self.url = url
 
     def doDownload(self):
@@ -34,9 +42,10 @@ class DownloadFile(object):
             status = status + chr(8) * (len(status) + 1)
             print status,
         f.close()
+        print('\n')
 
     def start(self):
         self.doDownload()
 
-download = DownloadFile('p.mp3', "http://www.scientificamerican.com/podcast/podcast.mp3?fileId=0EB7C7F2-EDB5-48B5-A7630CB76CABA391&ref=sciam")
-download.start()
+# download = DownloadFile('p.mp3', "http://www.scientificamerican.com/podcast/podcast.mp3?fileId=0EB7C7F2-EDB5-48B5-A7630CB76CABA391&ref=sciam")
+# download.start()
