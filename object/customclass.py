@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from student import student
+from student import Student
 
-stu = student('Wangwu', 25)
+stu = Student('Wangwu', 25)
 print stu

@@ -43,6 +43,7 @@ for li in lis:
     # we can use find.find to search subtags
     link = li.find('h3').find('a')
     # print link.contents[0]
+    # get attrs from tag
     contenturl = link.attrs['href']
     title = link.contents[0]
     filep = title

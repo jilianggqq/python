@@ -16,7 +16,7 @@ class Content(object):
     subfolder = "doc_" + time.strftime('%Y%m%d') + "download/"
     """docstring for content"""
 
-    def __init__(self, filename='default.txt', url='', based='/home/peter/Music/'):
+    def __init__(self, filename='default.txt', url='', based='~/Music/'):
         self.url = url
         self.user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
         self.headers = {'User-Agent': self.user_agent}
@@ -53,12 +53,16 @@ class Content(object):
 
                 subartcle = ''
 
+                # actually, content contains four types. First is just string(NavigableString)
+                # Second is Tag having string, such as <a href='dd'>content</a>
+                # Third is <br/>
+                # Fourth is tag without string, such as <a>sdfdsf<em>ddd</em>ttt</a>
                 typename = type(content).__name__
                 if(typename == 'NavigableString'):
                     print '1 p'
                     subartcle = content.string.encode('utf-8')
                 else:
-                    # if is tag
+                    # if content is Tag
                     if content.string:
                         print '2 p'
                         subartcle = content.string.encode('utf-8')
@@ -68,11 +72,13 @@ class Content(object):
                     else:
                         print '4 p'
                         pattern = re.compile(r'<\/\w+>|<\w+>')
+                        # replace http tag as ''
                         for subcontent in content.contents:
                             encodesubcontent = str(subcontent).encode('utf-8')
                             subartcle += re.sub(pattern, '', encodesubcontent)
 
                 artcle += subartcle
+            # change a new line when a paragraph end
             artcle += "\n\n"
         return artcle
 
