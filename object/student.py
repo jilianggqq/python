@@ -59,6 +59,7 @@ print '__name__ is:', __name__
 if __name__ == '__main__':
     # test
     stu = Student('Zhangsan', 20)
+    # print stu
     stu3 = Student('Zhangsan', 50)
     # stu.score(80)
     print stu
