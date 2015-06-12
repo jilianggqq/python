@@ -5,15 +5,18 @@ __author__ = 'PETER'
 import urllib2
 import time
 import os
+from os.path import expanduser
 import sys
 
 
 class DownloadFile(object):
 
+    home = expanduser("~")
     subfolder = time.strftime('%Y%m%d') + "download/"
 
-    def __init__(self, filename, url, based='~/Music/'):
-        self.dictionary = based + DownloadFile.subfolder
+    def __init__(self, filename, url, based='/Music/'):
+        self.dictionary = DownloadFile.home + based + DownloadFile.subfolder
+        # self.dictionary = based + DownloadFile.subfolder
         # if directory does not exist, create a new one
         if(not os.path.exists(self.dictionary)):
             os.makedirs(self.dictionary, 0755)

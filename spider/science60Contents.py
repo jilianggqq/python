@@ -8,19 +8,21 @@ import thread
 import time
 import os
 from bs4 import BeautifulSoup
+from os.path import expanduser
 import re
 
 
 class Content(object):
 
     subfolder = "doc_" + time.strftime('%Y%m%d') + "download/"
+    home = expanduser("~")
     """docstring for content"""
 
-    def __init__(self, filename='default.txt', url='', based='~/Music/'):
+    def __init__(self, filename='default.txt', url='', based='/Music/'):
         self.url = url
         self.user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
         self.headers = {'User-Agent': self.user_agent}
-        self.dictionary = based + Content.subfolder
+        self.dictionary = Content.home + based + Content.subfolder
 
         # if directory does not exist, create a new one
         if(not os.path.exists(self.dictionary)):
