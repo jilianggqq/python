@@ -1,0 +1,15 @@
+<html>
+
+<head>
+    <title>Welcome, {{ username }}</title>
+</head>
+
+<body>
+	{% if username=="admin" %}
+    <p>Welcome, {{ username }}! You are admin!</p>
+	{% else %}
+    <p>Welcome, {{ username }}! You are user!</p>
+	{% endif %}
+</body>
+
+</html>
