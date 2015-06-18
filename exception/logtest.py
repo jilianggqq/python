@@ -5,6 +5,6 @@ import pdb
 
 s = '0'
 n = int(s)
-pdb.set_trace()
+# pdb.set_trace()
 logging.info('input n = %d' % n)
 print 10 / n
