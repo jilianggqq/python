@@ -170,8 +170,10 @@ def create_engine(user, password, database, host='127.0.0.1', port=3306, **kw):
     defaults = dict(use_unicode=True, charset='utf8', collation='utf8_general_ci', autocommit=False)
     for k, v in defaults.iteritems():
         params[k] = kw.pop(k, v)
+        # print 
     params.update(kw)
     params['buffered'] = True
+    print params
     engine = _Engine(lambda: mysql.connector.connect(**params))
     # test connection...
     logging.info('Init mysql engine <%s> ok.' % hex(id(engine)))
@@ -479,7 +481,13 @@ def insert(table, **kw):
     IntegrityError: 1062 (23000): Duplicate entry '2000' for key 'PRIMARY'
     '''
     cols, args = zip(*kw.iteritems())
+    # logging.DEBUG('cols:%s' % str(cols))
+    # print cols
+    logging.debug('cols is {0}'.format(cols))
+    logging.debug('args is {0}'.format(args))
     sql = 'insert into `%s` (%s) values (%s)' % (table, ','.join(['`%s`' % col for col in cols]), ','.join(['?' for i in range(len(cols))]))
+    # logging.DEBUG(sql)
+    logging.debug("sql is {0}".format(sql))
     return _update(sql, *args)
 
 
@@ -509,8 +517,15 @@ def update(sql, *args):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
-    create_engine('www-data', 'www-data', 'test')
+    create_engine('root', '355itu11', 'test')
+    # create_engine('root', '355itu11', 'test')
     update('drop table if exists user')
     update('create table user (id int primary key, name text, email text, passwd text, last_modified real)')
     import doctest
     doctest.testmod()
+
+    # peter test
+    # u2 = select_one('select * from user where id=?', 1000)
+    # print u2
+    # u1 = dict(id=1000, name='Michael', email='michael@test.org', passwd='123456', last_modified=time.time())
+    # insert('user', **u1)

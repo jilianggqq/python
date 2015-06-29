@@ -11,6 +11,8 @@
 # 3. this is third method to import package (must have __init__.py in the package)
 import myPackage
 
+print myPackage.__file__
+
 c1 = myPackage.ClassOne()
 c2 = myPackage.ClassTwo()
 
