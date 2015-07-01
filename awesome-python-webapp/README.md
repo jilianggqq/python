@@ -1,1 +1,4 @@
-Python Web
+awesome-python-webapp
+=====================
+
+A python webapp tutorial.
