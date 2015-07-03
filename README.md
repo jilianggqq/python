@@ -15,3 +15,5 @@ gqq python learning
 ## object
 - student.py class student
 - studenttest.py test class student
+
+added by x230
