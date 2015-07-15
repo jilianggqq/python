@@ -1,6 +1,6 @@
 #!/bin/bash
 PATH="$PATH:/usr/bin/"
-export USER="gqq"
+export USER="itu"
 DISPLAY1="6"
 DISPLAY2="8"
 DEPTH="24"
@@ -14,15 +14,15 @@ echo "set up ok."
 case "$1" in
 start)
 	echo "Starting vncserver for user '${USER}' on localhost:${DISPLAY1}"
-	su ${USER} -c "/usr/bin/vncserver ${OPTIONS1}"
+	vncserver ${OPTIONS1}
 	echo "Starting vncserver for user '${USER}' on localhost:${DISPLAY2}"
-	su ${USER} -c "/usr/bin/vncserver ${OPTIONS2}"
+	vncserver ${OPTIONS2}
 	;;
 stop)
 	echo "Stopping vncserver for user '${USER}' on localhost:${DISPLAY1}"
-	su ${USER} -c "/usr/bin/vncserver -kill :${DISPLAY1}"
+	vncserver -kill :${DISPLAY1}
 	echo "Stopping vncserver for user '${USER}' on localhost:${DISPLAY2}"
-	su ${USER} -c "/usr/bin/vncserver -kill :${DISPLAY2}"
+	vncserver -kill :${DISPLAY2}
 	;;
 restart)
 	$0 stop
