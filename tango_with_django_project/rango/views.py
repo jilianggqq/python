@@ -21,4 +21,6 @@ def index(request):
 
 
 def about(request):
-    return HttpResponse("<h1>Rango says hey there world!中文</h1><a href='/rango/'>back</a>")
+    # return HttpResponse("<h1>Rango says hey there world!中文</h1><a href='/rango/'>back</a>")
+    context_dict = {'username': "Peter Guan"}
+    return render(request, 'rango/about.html', context_dict)

@@ -114,9 +114,14 @@ STATICFILES_DIRS = (
     STATIC_PATH,
 )
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
+
 if __name__ == '__main__':
     print 'STATIC_PATH:' + STATIC_PATH
     print 'TEMPLATE_PATH: ' + TEMPLATE_PATH
+    print 'MEDIA_ROOT: ' + MEDIA_ROOT
     print __file__
     print os.path.dirname(__file__)
     print os.path.dirname(os.path.dirname(__file__))
+
