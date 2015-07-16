@@ -12,9 +12,11 @@ class Category(models.Model):
     c_id = models.AutoField(primary_key=True)
     # you use primary_key = True if you do not want to use default field "id" given by django to your model
     name = models.CharField(max_length=128, unique=True)
+    views = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
 
     def __unicode__(self):  # For Python 2, use __str__ on Python 3
-        return self.name
+        return self.name + " " + str(self.views) + " " + str(self.likes)
 
 
 class Page(models.Model):
