@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 # Import the Category model
-from rango.models import Category
+from rango.models import Category, Page
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
@@ -29,8 +29,12 @@ def index(request):
     # Order the categories by no. likes in descending order.
     # Retrieve the top 5 only - or all if less than 5.
     # Place the list in our context_dict dictionary which will be passed to the template engine.
+    context_dict = {}
     category_list = Category.objects.order_by('-likes')[:5]
-    context_dict = {'categories': category_list}
+    context_dict['categories'] = category_list
+
+    page_list = Page.objects.order_by('-views')[:5]
+    context_dict['pages'] = page_list
 
     # Render the response and send it back!
     return render(request, 'rango/index.html', context_dict)
@@ -43,7 +47,7 @@ def about(request):
 
 
 def category(request, category_name_slug):
-    logging.debug("category_name_slug:{0}".format(category_name_slug))
+    logging.debug("category_name_slug-------------{0}".format(category_name_slug))
     # Create a context dictionary which we can pass to the template rendering engine.
     context_dict = {}
 
@@ -64,7 +68,8 @@ def category(request, category_name_slug):
         # We'll use this in the template to verify that the category exists.
         context_dict['category'] = category
 
-        logging.debug('pages:{0}'.format)
+        logging.debug('pages-------------{0}'.format(pages))
+        logging.debug('category-------------{0}'.format(category))
 
     except Category.DoesNotExist:
         # We get here if we didn't find the specified category.

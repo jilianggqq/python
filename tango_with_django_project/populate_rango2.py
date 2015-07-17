@@ -12,39 +12,47 @@ def populate():
 
     add_page(c_id=3,
              title="Official Python Tutorial",
-             url="http://docs.python.org/2/tutorial/")
+             url="http://docs.python.org/2/tutorial/",
+             views=800)
 
     add_page(c_id=3,
              title="How to Think like a Computer Scientist",
-             url="http://www.greenteapress.com/thinkpython/")
+             url="http://www.greenteapress.com/thinkpython/",
+             views=700)
 
     add_page(c_id=3,
              title="Learn Python in 10 Minutes",
-             url="http://www.korokithakis.net/tutorials/python/")
+             url="http://www.korokithakis.net/tutorials/python/",
+             views=600)
 
     django_cat = add_cat("Django", 64, 32)
 
     add_page(c_id=4,
              title="Official Django Tutorial",
-             url="https://docs.djangoproject.com/en/1.5/intro/tutorial01/")
+             url="https://docs.djangoproject.com/en/1.5/intro/tutorial01/",
+             views=1000)
 
     add_page(c_id=4,
              title="Django Rocks",
-             url="http://www.djangorocks.com/")
+             url="http://www.djangorocks.com/",
+             views=500)
 
     add_page(c_id=4,
              title="How to Tango with Django",
-             url="http://www.tangowithdjango.com/")
+             url="http://www.tangowithdjango.com/",
+             views=900)
 
     frame_cat = add_cat("Other Frameworks", 32, 16)
 
     add_page(c_id=5,
              title="Bottle",
-             url="http://bottlepy.org/docs/dev/")
+             url="http://bottlepy.org/docs/dev/",
+             views=400)
 
     add_page(c_id=5,
              title="Flask",
-             url="http://flask.pocoo.org")
+             url="http://flask.pocoo.org",
+             views=300)
 
     # Print out what we have added to the user.
     for c in Category.objects.all():
