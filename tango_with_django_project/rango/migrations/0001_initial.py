@@ -15,6 +15,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('c_id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(unique=True, max_length=128)),
+                ('views', models.IntegerField(default=0)),
+                ('likes', models.IntegerField(default=0)),
+                ('slug', models.SlugField(unique=True)),
             ],
         ),
         migrations.CreateModel(

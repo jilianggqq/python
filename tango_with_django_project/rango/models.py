@@ -5,6 +5,7 @@ from django.db import models
 import logging
 logging.basicConfig(level=logging.DEBUG)
 # Create your models here.
+from django.template.defaultfilters import slugify
 
 
 class Category(models.Model):
@@ -14,6 +15,12 @@ class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        logging.debug("******************Category saving...**************************")
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
 
     def __unicode__(self):  # For Python 2, use __str__ on Python 3
         return self.name + " " + str(self.views) + " " + str(self.likes)
