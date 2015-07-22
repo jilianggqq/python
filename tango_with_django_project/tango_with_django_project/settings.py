@@ -117,6 +117,8 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
 
+LOGIN_URL = '/rango/login/'
+
 if __name__ == '__main__':
     print 'STATIC_PATH:' + STATIC_PATH
     print 'TEMPLATE_PATH: ' + TEMPLATE_PATH

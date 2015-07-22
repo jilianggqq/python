@@ -5,6 +5,12 @@
     </head>
 
     <body>
+        {% if user.is_authenticated %}
+            <h1>Rango says... hello {{ user.username }}!</h1>
+        {% else %}
+            <h1>Rango says... hello world!</h1>
+        {% endif %}
+        
         <h1>{{ category_name }}</h1>
         {% if category %}
             {% if pages %}
