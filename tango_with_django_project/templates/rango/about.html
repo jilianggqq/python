@@ -1,16 +1,85 @@
 <!DOCTYPE html>
-{% load staticfiles %} <!-- New line -->
+{% load static %}
 <html>
-
     <head>
-        <title>About</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+        <title>Rango</title>
+        <!-- Bootstrap core CSS -->
+        <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{% static "css/freelancer.css" %}" rel="stylesheet">
+        <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="{% static "js/ie-emulation-modes-warning.js"%}"></script>
     </head>
 
     <body>
-        <h1>This website is for {{username}} to Test Django</h1>
-        <a href="/rango">Rango</a><br />
-        <img src="{% static "images/peter.png" %}" alt="Picture of Peter" /> <!-- New line -->
-        <img src="{% static "images/peter.png" %}" alt="Picture of Peter" /> <!-- New line -->
-    </body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    {% if user.is_authenticated %}
+                        <a class="navbar-brand" href="#page-top">Hello {{ user.username }}!</a>
+                    {% else %}
+                        <a class="navbar-brand" href="#page-top">Hello Django!</a>
+                    {% endif %}
+                </div>
 
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="/rango/">Home</a>
+                        </li>
+                    {% if user.is_authenticated %}
+                        <li class="page-scroll">
+                            <a href="/rango/logout/">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="page-scroll">
+                            <a href="/rango/register/">Register Here</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="/rango/login/">Login</a>
+                        </li>
+                    {% endif %} 
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <!-- About Section -->
+    <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img class="img-responsive" style="display:inline"  src="{% static "images/peter.png" %}" alt="Peter"> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <img class="img-responsive" style="display:inline"  src="{% static "images/peter.png" %}" alt="Peter">
+                        <div class="intro-text">
+                            <span class="skills">Web Developer - Qiqiang Guan JianYu Gao</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </body>
 </html>
