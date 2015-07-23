@@ -1,54 +1,134 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
         <title>Rango</title>
+        <!-- Bootstrap core CSS -->
+        <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{% static "css/freelancer.css" %}" rel="stylesheet">
+        <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="{% static "js/ie-emulation-modes-warning.js"%}"></script>
     </head>
 
     <body>
-        {% if user.is_authenticated %}
-            <h1>Rango says... hello {{ user.username }}!</h1>
-        {% else %}
-            <h1>Rango says... hello world!</h1>
-        {% endif %}
-        <br/>
-        <br/>
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    {% if user.is_authenticated %}
+                        <a class="navbar-brand" href="#page-top">Hello {{ user.username }}!</a>
+                    {% else %}
+                        <a class="navbar-brand" href="#page-top">Hello Django!</a>
+                    {% endif %}
+                </div>
 
-        {% if user.is_authenticated %}
-            <a href="/rango/logout/">Logout</a><br />
-        {% else %}
-            <a href="/rango/register/">Register Here</a><br />
-            <a href="/rango/login/">Login</a><br />
-        {% endif %}
-        <br/>
-        <br/>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="/rango/">Home</a>
+                        </li>
+                    {% if user.is_authenticated %}
+                        <li class="page-scroll">
+                            <a href="/rango/logout/">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="page-scroll">
+                            <a href="/rango/register/">Register Here</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="/rango/login/">Login</a>
+                        </li>
+                    {% endif %} 
+                        <li class="page-scroll">
+                            <a href="/rango/about/">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <!-- About Section -->
+        <section class="success" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Top 6 Category</h2>
+                        <hr class="star-light">
+                    </div>
+                </div>
+                <div class="row">
+                {% if categories %}
+                    {% for category in categories %}
+                        <!-- Following line changed to add an HTML hyperlink -->
+                        <div class="col-md-4">
+                            <a href="/rango/category/{{ category.slug }}" class="btn btn-lg btn-outline">
+                                {{ category.name }}
+                            </a>
+                        </div>
+                    {% endfor %}
+               {% else %}
+                    <strong>There are no categories present.</strong>
+               {% endif %}
+                </div>
+                <div class="col-lg-12 text-center">
+                        <h3><a id="add_category" href="/rango/add_category/">Add a New Category</a><br /></h3>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <h2>Top 5 Category</h2>
-        {% if categories %}
-            <ul>
-                {% for category in categories %}
-                <!-- Following line changed to add an HTML hyperlink -->
-                <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
-                {% endfor %}
-            </ul>
-       {% else %}
-            <strong>There are no categories present.</strong>
-       {% endif %}
-
-        <h2>Top 5 Page</h2>
-       {% if pages %}
-            <ul>
-                {% for page in pages %}
-                <li>{{ page.title }}</li>
-                {% endfor %}
-            </ul>
-       {% else %}
-            <strong>There are no pages present.</strong>
-       {% endif %}
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Top 6 Pages</h2>
+                        <hr class="star-primary">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                        <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                        <form name="sentMessage" id="contactForm" novalidate>
+                    {% if pages %}
+                        {% for page in pages %}
+                            <div style="margin-top: 1px;" class="form-group col-xs-12 floating-label-form-group controls">
+                            <a type="text" class="form-control page-link" href="{{page.url}}">{{ page.title }}</a>
+                            <p class="help-block text-danger"></p>
+                            </div>
+                        {% endfor %}
+                   {% else %}
+                        <strong>There are no pages present.</strong>
+                   {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     <a href="/rango/add_category/">Add a New Category</a><br />
-    <a href="/rango/about/">About</a><br />
-    <a href="/rango/restricted/">Restricted Page</a><br />
-    <!-- <a href="/rango/register/">Register Here</a><br /> -->
-    <!-- <a href="/rango/login/">Login</a> -->
     </body>
 </html>

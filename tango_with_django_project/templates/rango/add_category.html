@@ -1,27 +1,66 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
     <head>
-        <title>Rango</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+        <title>Rango Category</title>
+        <!-- Bootstrap core CSS -->
+        <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{% static "css/freelancer.css" %}" rel="stylesheet">
+        <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="{% static "js/ie-emulation-modes-warning.js"%}"></script>
     </head>
 
     <body>
-        <h1>Add a Category</h1>
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Add Category</h2>
+                        <hr class="star-primary">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                        <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                        <form id="category_form" method="post" action="/rango/add_category/">
+                        {% csrf_token %}
+                        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
 
-        <form id="category_form" method="post" action="/rango/add_category/">
+                        {% for field in form.visible_fields %}
+                            <div style="margin-top: 1px;" class="form-group col-xs-12 floating-label-form-group controls">
 
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
+                                <label>{{ field }}</label>
+                                <input type="text" class="form-control" name='name' placeholder="{{ field.help_text }}" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            {{ field.errors }}
 
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
-            {% endfor %}
-
-            <input type="submit" name="submit" value="Create Category" />
-        </form>
+                        {% endfor %}
+                            <br>
+                            <div id="success"></div>
+                            <div class="row">
+                                <div class="form-group col-xs-12">
+                                    <button type="submit" class="btn btn-success btn-lg">Send</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </body>
 
 </html>
