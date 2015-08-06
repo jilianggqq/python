@@ -1,0 +1,11 @@
+{
+	"draw_white_space": "all",
+	"font_size": 11,
+	"ignored_packages":
+	[
+		"Vintage",
+		"Markdown"
+	],
+	"translate_tabs_to_spaces": true,
+	"wrap_width": 100
+}
