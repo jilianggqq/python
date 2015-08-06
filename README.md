@@ -16,4 +16,4 @@ gqq python learning
 - student.py class student
 - studenttest.py test class student
 
-added by x230
+added by x230 ubuntu windows10
