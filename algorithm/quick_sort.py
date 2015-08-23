@@ -21,9 +21,9 @@ def partition(arr, start, end):
 def qs(arr, start, end):
     if start >= end:
         return
-    pivot = partition(arr, start, end)
-    qs(arr, start, pivot - 1)
-    qs(arr, pivot + 1, end)
+    index = partition(arr, start, end)
+    qs(arr, start, index - 1)
+    qs(arr, index + 1, end)
     # print arr
 
 
