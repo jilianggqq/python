@@ -21,8 +21,8 @@ class Animal(object):
 
 class Dog(Animal):
 
-    def __init__(self):
-        super(Dog, self).__init__()
+    def __init__(self, age=10):
+        super(Dog, self).__init__(age)
         print "Dog constructor is called"
 
     def run(self):
@@ -36,7 +36,7 @@ def testPolymorphism(a):
 a = Animal()
 a.run()
 
-d = Dog()
+d = Dog(110)
 d.run()
 print len(d)
 print d.__old__()
