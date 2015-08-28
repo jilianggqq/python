@@ -29,6 +29,10 @@ class Dog(Animal):
         super(Dog, self).run()
         print 'Dog is running...'
 
+
+def testPolymorphism(a):
+    a.run()
+
 a = Animal()
 a.run()
 
@@ -68,3 +72,6 @@ print run
 print dir(run)
 print run.__class__.__name__
 run()
+
+print '***** test Polymorphism *****'
+testPolymorphism(d)
