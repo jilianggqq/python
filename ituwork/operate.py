@@ -16,7 +16,7 @@ class MechFactory(object):
         t = dops['-t']
         p = dops['-p']
 
-        print t, p
+        # print t, p
         if 'tsmc65' == t and '6m' == p:
             tp = Tsmc65_6()
         elif 'tsmc45' == t and '6m' == p:
@@ -37,9 +37,10 @@ class MechFactory(object):
             if '-r' in dops:
                 tp.setrtl(dops['-r'])
             if '-d' in dops:
-                tp.setdef(dops['-d'])
+                tp.setdefi(dops['-d'])
             if '-v' in dops:
                 tp.setpwr(dops['-v'])
+        # print dir(tp)
         return tp
 
 

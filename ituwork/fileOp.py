@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sysConfig import SysConfig
-from commonMechine import CommonMechine
+from commonMechine2 import CommonMechine
 from mechines import *
 import os
 import shutil
@@ -37,7 +37,7 @@ class FileOp(object):
     def getPwrContent(self):
         with open('templates/power.conf', 'r') as f:
             template = f.read()
-        return template.format(self.mechine.getlef(), self.mechine.getgds(), self.mechine.getsch(), self.mechine.getpwr(), self.mechine.getsdc(), self.mechine.getdef())
+        return template.format(self.mechine.getlef(), self.mechine.getgds(), self.mechine.getsch(), self.mechine.getpwr(), self.mechine.getsdc(), self.mechine.getdefi())
 
         # Power/IR/EM file
     def getPnrContent(self):
@@ -45,38 +45,39 @@ class FileOp(object):
             template = f.read()
         return template.format("{0}", '{1}', "{}", sdc=self.mechine.getsdc(), lef=self.mechine.getlef())
 
-    def writePnr(self):
-        self.__writefile(FileOp.files["pnr"], self.getPnrContent())
+    # def writePnr(self):
+    #     self.__writefile(FileOp.files["pnr"], self.getPnrContent())
 
-    def writePwr(self):
-        self.__writefile(FileOp.files['pwr'], self.getPwrContent())
+    # def writePwr(self):
+    #     self.__writefile(FileOp.files['pwr'], self.getPwrContent())
 
-    def writeDrc(self):
-        FileOp.files[''] = 'drc/final.md'
-        self.__writefile(FileOp.files['drc'], self.getDrcContent())
+    # def writeDrc(self):
+    #     self.__writefile(FileOp.files['drc'], self.getDrcContent())
 
-    def writeLvs(self):
-        FileOp.files[''] = 'lvs/final.md'
-        self.__writefile(FileOp.files['lvs'], self.getLvsContent())
+    # def writeLvs(self):
+    #     self.__writefile(FileOp.files['lvs'], self.getLvsContent())
 
-    def writeSyn(self):
-        FileOp.files[''] = 'syn/final.md'
-        self.__writefile(FileOp.files['syn'], self.getSynContent())
+    # def writeSyn(self):
+    #     self.__writefile(FileOp.files['syn'], self.getSynContent())
 
+    # def writefile(self):
+    #     self.writePnr()
+    #     self.writePwr()
+    #     self.writeDrc()
+    #     self.writeLvs()
+    #     self.writeSyn()
+
+    # the lines of 48 to 68 can be replaced by this function
     def writefile(self):
-        self.writePnr()
-        self.writePwr()
-        self.writeDrc()
-        self.writeLvs()
-        self.writeSyn()
+        for direct, filename in FileOp.files.iteritems():
+            self.__writefile(FileOp.files[direct], getattr(
+                self, "get" + direct[0].upper() + direct[1:] + 'Content')())
 
     @staticmethod
     def clear():
         for direct, filename in FileOp.files.iteritems():
             if os.path.exists(os.path.dirname(filename)):
                 shutil.rmtree(direct)
-            else:
-                print 'not fou'
 
     def __writefile(self, filename, contents):
         # print '&**********', os.path.dirname(filename)
@@ -84,5 +85,3 @@ class FileOp(object):
             os.makedirs(os.path.dirname(filename))
         with open(filename, "w") as f:
             f.write(contents)
-
-

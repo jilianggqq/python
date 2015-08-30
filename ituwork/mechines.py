@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sysConfig import SysConfig
-from commonMechine import CommonMechine
+from commonMechine2 import CommonMechine
 
 class Tsmc45_6(CommonMechine):
     """docstring for Tsmc45_6"""

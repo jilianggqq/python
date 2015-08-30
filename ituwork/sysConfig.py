@@ -51,13 +51,28 @@ HELP
     -h display help
 CLEAR
     -c clear all the results
+EXAMPLES
+    ./operate.py -t tsmc65 -p 6m
+    ./operate.py -t tsmc45 -p 7m -v 6v -d /home/Peter/top.def -n Peter_Top -g /home/peter/design/top.gds
+    ./operate.py -t umc45 -p 6m -g /home/peter/top.gd -s /home/peter/top.sch -n NewTop -r /home/peter/top.v -d /home/peter/top.def -v 10v
 '''
 
     # my default design data
-    def_topcell_name = 'TOP'
-    def_gds = '/home/design/top.gds'
-    def_sch = '/home/design/top.sch'
-    def_def = '/home/design/top.def'
-    def_rtl = '/home/design/top.v'
-    def_pwr = '5 (volt.)'
+    # def_topcell_name = 'TOP'
+    # def_gds = '/home/design/top.gds'
+    # def_sch = '/home/design/top.sch'
+    # def_def = '/home/design/top.def'
+    # def_rtl = '/home/design/top.v'
+    # def_pwr = '5 (volt.)'
 
+    def_config = {'top': 'TOP', 'gds': '/home/design/top.gds', 'sch': '/home/design/top.sch',
+                  'defi': '/home/design/top.def', 'rtl': '/home/design/top.v', 'pwr': '5 (volt.)'}
+
+    tsmc45_6 = dict(tsmc45_6.items() + def_config.items())
+    tsmc45_7 = dict(tsmc45_7.items() + def_config.items())
+    tsmc65_6 = dict(tsmc65_6.items() + def_config.items())
+    umc45_6 = dict(umc45_6.items() + def_config.items())
+
+if __name__ == '__main__':
+    print SysConfig.tsmc45_6
+    print SysConfig.umc45_6

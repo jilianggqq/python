@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from sysConfig import SysConfig
-
-
 class CommonMechine(object):
 
     """docstring for CommonMechine
@@ -11,12 +8,12 @@ class CommonMechine(object):
 
     def __init__(self, dicConfig):
         super(CommonMechine, self).__init__()
-        self.__topName = SysConfig.def_topcell_name
-        self.__gds = SysConfig.def_gds
-        self.__sch = SysConfig.def_sch
-        self.__defi = SysConfig.def_def
-        self.__rtl = SysConfig.def_rtl
-        self.__pwr = SysConfig.def_pwr
+        self.__top = dicConfig['top']
+        self.__gds = dicConfig['gds']
+        self.__sch = dicConfig['sch']
+        self.__defi = dicConfig['defi']
+        self.__rtl = dicConfig['rtl']
+        self.__pwr = dicConfig['pwr']
 
         # datas
         self.__lef = dicConfig['lef']
@@ -47,11 +44,11 @@ class CommonMechine(object):
 
     # Your design data are listed below
     # top cell name
-    def settop(self, topName):
-        self.__topName = topName
+    def settop(self, top):
+        self.__top = top
 
     def gettop(self):
-        return self.__topName
+        return self.__top
 
     #     GDS:  /home/design/top.gds
     def setgds(self, gds):
@@ -68,10 +65,10 @@ class CommonMechine(object):
         return self.__sch
 
     # DEF: /home/design/top.def
-    def setdef(self, defi):
+    def setdefi(self, defi):
         self.__defi = defi
 
-    def getdef(self):
+    def getdefi(self):
         return self.__defi
 
     # RTL verilog: /home/design/top.v
@@ -87,6 +84,3 @@ class CommonMechine(object):
 
     def getpwr(self):
         return self.__pwr
-
-
-
