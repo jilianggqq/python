@@ -41,7 +41,7 @@ class SysConfig(object):
     def_gds = '/home/design/top.gds'
     def_sch = '/home/design/top.sch'
     def_def = '/home/design/top.def'
-    def_rdl = '/home/design/top.v'
+    def_rtl = '/home/design/top.v'
     def_pwr = '5 (volt.)'
 
 if __name__ == '__main__':
