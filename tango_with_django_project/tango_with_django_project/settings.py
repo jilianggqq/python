@@ -14,12 +14,21 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+logging.debug('BASE_DIR is {0}'.format(BASE_DIR))
+
+
 
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
+logging.debug('TEMPLATE_PATH is {0}'.format(TEMPLATE_PATH))
 
+TEMPLATE_DIRS = (
+    '/home/gqq/MyProjects/python/tango_with_django_project/templates',
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -32,6 +41,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
 
 # Application definition
 
@@ -53,7 +63,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    # 'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'tango_with_django_project.urls'
@@ -76,8 +86,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'tango_with_django_project.wsgi.application'
 
+WSGI_APPLICATION = 'tango_with_django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -118,12 +128,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
 
 LOGIN_URL = '/rango/login/'
-
-if __name__ == '__main__':
-    print 'STATIC_PATH:' + STATIC_PATH
-    print 'TEMPLATE_PATH: ' + TEMPLATE_PATH
-    print 'MEDIA_ROOT: ' + MEDIA_ROOT
-    print __file__
-    print os.path.dirname(__file__)
-    print os.path.dirname(os.path.dirname(__file__))
 
