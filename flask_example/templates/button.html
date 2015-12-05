@@ -7,17 +7,17 @@
     $(function() {
         // we can write code here after all the page loaded.
         $("#btnGet").click(function() {
-            //when button click, do something.
+            //when button which id is 'btnGet' click, do something.
+            // 1. change its value to New value
             $(this).val("New Value");
-            // $.get("http://127.0.0.1:5000/after", function(data) {
-            //     $("#lblInfo").html(data);
-            // });
+            // 2. do ajax request, request the domin http://10.1.15.97:5000/after.
             $.get("after", function(data) {
                 $("#lblInfo").html(data);
             });
         });
 
-        // test cross domin
+        // different port means cross domin
+        // we must do some change in python code(server code)
         $("#btnCross").click(function() {
             $.get("http://10.1.15.97:5001/cross", function(data) {
                 $("#lblInfo").html(data);
