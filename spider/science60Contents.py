@@ -37,7 +37,7 @@ class Content(object):
         reads = response.read()
         soup = BeautifulSoup(reads, "lxml")
         # print soup.prettify().encode('utf-8')
-        pinfo = soup.find("section", {'class': 'article-content'}).findAll('p')
+        pinfo = soup.find("div", {'class': 'transcript__inner'}).findAll('p')
         print "this artcle has %d paragraphes" % len(pinfo)
         artcle = ''
         for info in pinfo:
@@ -76,7 +76,7 @@ class Content(object):
                         pattern = re.compile(r'<\/\w+>|<\w+>')
                         # replace http tag as ''
                         for subcontent in content.contents:
-                            encodesubcontent = str(subcontent).encode('utf-8')
+                            encodesubcontent = subcontent.encode('utf-8')
                             subartcle += re.sub(pattern, '', encodesubcontent)
 
                 artcle += subartcle

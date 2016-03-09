@@ -23,30 +23,38 @@ response = urllib2.urlopen(request)
 reads = response.read()
 soup = BeautifulSoup(reads, "lxml")
 # print soup.prettify().encode('utf-8')
-lis = soup.findAll("li", {'class': 'clearfix'})
+# lis = soup.findAll("li", {'class': 'clearfix'})
+lis = soup.findAll("section", {'class': 'podcasts-listing'})
 date = time.strftime('%Y%m%d')
-# print len(lis)
+print len(lis)
 # print lis
+# print date
 
 downloaddoc = sys.argv[1]
 downloadmp3 = sys.argv[2]
 isDownloaddoc = False
 isDownloadmp3 = False
-if downloaddoc and downloaddoc == 'doc':
+if downloaddoc == 'doc':
     isDownloaddoc = True
 
-if downloadmp3 and downloadmp3 == 'mp3':
+if downloadmp3 == 'mp3':
     isDownloadmp3 = True
+
+print "isDownloadmp3:{0},isDownloaddoc:{1}".format(isDownloadmp3, isDownloaddoc)
 
 print '###########################first section#################################'
 for li in lis:
     # we can use find.find to search subtags
-    link = li.find('h3').find('a')
+    link = li.find(
+        'div', {'class': 'podcasts-listing__main'}).find('h3').find('a')
     # print link.contents[0]
     # get attrs from tag
     contenturl = link.attrs['href']
-    title = link.contents[0]
+    # how to convert unicode to utf8
+    title = link.find('span').contents[0].encode('utf-8').strip()
     filep = title
+
+    print "downloading {0}, url is {1}.\n".format(filep, contenturl)
     if isDownloaddoc:
         print '*****************start download doc********************'
         print 'page request url:' + contenturl
@@ -55,7 +63,8 @@ for li in lis:
         print '*****************end download doc********************'
 
     if isDownloadmp3:
-        download = li.find('p', {'class': 'metaClump'}).find('a', {'class': 'download'})
+        download = li.find(
+            'div', {'class': 'podcasts-listing__download'}).find('a')
         mp3url = base_url + download.attrs['href']
         print '*****************start download mp3********************'
         print 'mp3 request url:' + mp3url
