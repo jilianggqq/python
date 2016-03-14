@@ -1,15 +1,40 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
+from rest_framework import renderers
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from snippets.models import Snippet
 from snippets.serializers import SnippetSerializer
+from snippets.serializers import SnippetSerializer_old2
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework import generics
+from rest_framework.reverse import reverse
+
+
+@api_view(('GET',))
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'snippets': reverse('snippet-list', request=request, format=format)
+    })
+
+
+class SnippetHighlight(generics.GenericAPIView):
+    queryset = Snippet.objects.all()
+    renderer_classes = (renderers.StaticHTMLRenderer,)
+
+    def get(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        # print dir(snippet)
+        print type(snippet).__name__
+        return Response(snippet.highlighted + "<br>" + str(snippet.owner))
+        # serializer = SnippetSerializer_old2(snippet)
+        # print serializer.data
+        # return Response(serializer.data)
 
 
 class JSONResponse(HttpResponse):
@@ -167,11 +192,13 @@ from snippets.models import Snippet
 from snippets.serializers import SnippetSerializer
 from rest_framework import mixins
 from rest_framework import generics
+from rest_framework import permissions
+from snippets.permissions import IsOwnerOrReadOnly
 
 
 class SnippetList_old4(mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
-                  generics.GenericAPIView):
+                       mixins.CreateModelMixin,
+                       generics.GenericAPIView):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
 
@@ -183,9 +210,9 @@ class SnippetList_old4(mixins.ListModelMixin,
 
 
 class SnippetDetail_old4(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
+                         mixins.UpdateModelMixin,
+                         mixins.DestroyModelMixin,
+                         generics.GenericAPIView):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
 
@@ -203,10 +230,32 @@ class SnippetDetail_old4(mixins.RetrieveModelMixin,
 
 
 class SnippetList(generics.ListCreateAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
+
+    def perform_create(self, serializer):
+        # The create() method of our serializer will now be passed an
+        # additional 'owner' field, along with the validated data from the
+        # request.
+        serializer.save(owner=self.request.user)
 
 
 class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
+
+# these views below are for users.
+from django.contrib.auth.models import User
+from snippets.serializers import UserSerializer
+
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

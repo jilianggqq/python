@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from snippets.models import Snippet, Comment, LANGUAGE_CHOICES, STYLE_CHOICES
+from django.contrib.auth.models import User
 
 
-class OriginalSnippetSerializer(serializers.Serializer):
+class SnippetSerializer_old(serializers.Serializer):
     pk = serializers.IntegerField(read_only=True)
     title = serializers.CharField(
         required=False, allow_blank=True, max_length=100)
@@ -35,11 +36,30 @@ class OriginalSnippetSerializer(serializers.Serializer):
 # Simple default implementations for the create() and update() methods.
 
 
-class SnippetSerializer(serializers.ModelSerializer):
+class SnippetSerializer_old2(serializers.ModelSerializer):
 
     class Meta:
         model = Snippet
-        fields = ('id', 'title', 'code', 'linenos', 'language', 'style')
+        fields = ('highlighted', 'owner',)
+
+
+class SnippetSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    highlight = serializers.HyperlinkedIdentityField(view_name='snippet-highlight', format='html')
+    # testf = 'aaa'
+
+    class Meta:
+        model = Snippet
+        fields = ('url', 'highlight', 'owner',
+                  'title', 'code', 'linenos', 'language', 'style')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    snippets = serializers.HyperlinkedRelatedField(many=True, view_name='snippet-detail', read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'snippets')
 
 
 class CommentSerializer(serializers.Serializer):
