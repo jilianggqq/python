@@ -1,21 +1,19 @@
-
-print "this is **********slice.py******************"
-
 # this is traditional loops
+print "this is **********slice_test.py**************"
 s = ["sdf", "user1", "biingpang", "shelloc"]
 i = 0
 while i < 3:
     print s[i]
     i = i + 1
 
-print
-print "s[0:2] is:"
-print s[0:2]
-
-print 'space'[1:2]
-print 'asdfuierer'[-3:]
-print (1, 2, 3, 4, 'abc')[-2:]
-print
+# print
+# print "s[0:2] is:"
+# print s[0:2]
+#
+# print 'space'[1:2]
+# print 'asdfuierer'[-3:]
+# print (1, 2, 3, 4, 'abc')[-2:]
+# print
 
 print '#############################print key###############################33'
 dict = {"key1": "val1", "key2": "val2", "key3": "val3"}

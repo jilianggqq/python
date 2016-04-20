@@ -1,0 +1,8 @@
+{
+  "commandId": 0,
+  "name": "Parameter Register Read",
+  "dataLength": 36,
+  "paramName1": null,
+  "paramName2": null,
+  "uptocloud": 1
+}
