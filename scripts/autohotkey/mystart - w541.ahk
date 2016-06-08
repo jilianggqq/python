@@ -23,26 +23,26 @@ Else
 Return
 
 ; 3. emeditor
-; #n::
-; IfWinNotExist, ahk_class EmEditorMainFrame3
-; 	run,d:\Program Files\EmEditor\EmEditor.exe
-; Else
-; 	IfWinNotActive ahk_class EmEditorMainFrame3
-; 	WinActivate
-; Else
-; 	Winminimize
-; Return
-
-; 3. notepad ++
 #n::
-IfWinNotExist, ahk_class Notepad++
-	run,c:\Green\npp.6.8.1.bin\notepad++.exe
+IfWinNotExist, ahk_class EmEditorMainFrame3
+	run,d:\green\EmEditor14\EmEditor.exe
 Else
-	IfWinNotActive ahk_class Notepad++
+	IfWinNotActive ahk_class EmEditorMainFrame3
 	WinActivate
 Else
 	Winminimize
 Return
+
+; 3. notepad ++
+;#n::
+;IfWinNotExist, ahk_class Notepad++
+;	run,c:\Green\npp.6.8.1.bin\notepad++.exe
+;Else
+;	IfWinNotActive ahk_class Notepad++
+;	WinActivate
+;Else
+;	Winminimize
+;Return
 
 
 ; 4、启动chrome。
