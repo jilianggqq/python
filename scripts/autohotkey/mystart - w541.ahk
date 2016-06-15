@@ -14,7 +14,7 @@ Return
 ; 2. youdao dictionary
 #u::
 IfWinNotExist, ahk_class YodaoMainWndClass
-	run, D:\Program Files (x86)\Youdao\Dict4\YodaoDict.exe
+	run, d:\Program Files\Dict\YodaoDict.exe
 Else
 	IfWinNotActive ahk_class YodaoMainWndClass
 	WinActivate
