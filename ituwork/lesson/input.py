@@ -35,11 +35,23 @@ def sequence(n):
 def compare(a, b):
     print "aaa" if a > b else "bbb"
 
+
+def loopString(strin):
+    for c in strin:
+        print c
+
+    i = 0
+    while i < len(strin):
+        print strin[i]
+        i = i + 1
+    print "{0}-{1}".format(9, 'world')
+
 if __name__ == '__main__':
+    argv = sys.argv
+    # compare(argv[1], argv[2])
     # var = raw_input("Please enter a number: ")
     # countdown(int(var))
     # sequence(int(var))
     # continue_input()
-    argv = sys.argv
-    compare(argv[1], argv[2])
     # print argv
+    loopString(argv[1])
