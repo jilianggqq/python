@@ -25,6 +25,8 @@ class Switcher(object):
 
 if __name__ == '__main__':
     s = Switcher()
-    n0 = s.numbers_to_methods_to_strings(8)
+    n0 = s.numbers_to_methods_to_strings(2)
     print n0()
+    # print dir(n0)
+    print n0.im_class
     print getattr(s, n0.__name__)()

@@ -6,10 +6,18 @@ def tags(tag):
     def tag_fun(func):
     	@wraps(func)
         def execm(name):
+            # print func.__name__
             return '<{0}>{1}</{0}>'.format(tag, name)
         return execm
     return tag_fun
 
+# def  author(name):
+#     def tag_fun(func):
+#         @wraps(func)
+#         def execm():
+#             return '<{0}>{1}</{0}>'.format(tag, name)
+#         return execm
+#     return tag_fun
 
 # @tags("p")
 @tags("strong")
