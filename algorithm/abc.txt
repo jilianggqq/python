@@ -1,0 +1,5 @@
+**************************************************
+My Fred directory is at:   {./abc}
+My Fred file is at: {./tel/file1}
+My schedule file is at: {./sch/file2}
+**************************************************
