@@ -1,0 +1,30 @@
+{
+    "usageCount": 0,
+    "type": "script",
+    "store": {},
+    "description": "atom",
+    "abbreviation": {
+        "wordChars": "[\\w]",
+        "ignoreCase": false,
+        "triggerInside": false,
+        "abbreviations": [],
+        "backspace": true,
+        "immediate": false
+    },
+    "omitTrigger": false,
+    "hotkey": {
+        "modifiers": [
+            "<alt>"
+        ],
+        "hotKey": "a"
+    },
+    "showInTrayMenu": false,
+    "modes": [
+        3
+    ],
+    "prompt": false,
+    "filter": {
+        "isRecursive": false,
+        "regex": null
+    }
+}

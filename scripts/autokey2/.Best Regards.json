@@ -1,0 +1,31 @@
+{
+    "matchCase": false,
+    "modes": [
+        1
+    ],
+    "showInTrayMenu": false,
+    "description": "Best Regards",
+    "abbreviation": {
+        "wordChars": "[\\w]",
+        "immediate": false,
+        "abbreviations": [
+            "qqbst"
+        ],
+        "triggerInside": false,
+        "backspace": true,
+        "ignoreCase": false
+    },
+    "omitTrigger": false,
+    "sendMode": "kb",
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "usageCount": 0,
+    "prompt": false,
+    "type": "phrase",
+    "hotkey": {
+        "hotKey": null,
+        "modifiers": []
+    }
+}

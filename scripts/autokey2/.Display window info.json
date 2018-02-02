@@ -1,0 +1,31 @@
+{
+    "modes": [
+        3
+    ],
+    "prompt": false,
+    "hotkey": {
+        "hotKey": "i",
+        "modifiers": [
+            "<ctrl>",
+            "<shift>"
+        ]
+    },
+    "type": "script",
+    "description": "Display window info",
+    "abbreviation": {
+        "wordChars": "[\\w]",
+        "immediate": false,
+        "abbreviations": [],
+        "triggerInside": false,
+        "backspace": true,
+        "ignoreCase": false
+    },
+    "showInTrayMenu": true,
+    "omitTrigger": false,
+    "usageCount": 0,
+    "store": {},
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    }
+}

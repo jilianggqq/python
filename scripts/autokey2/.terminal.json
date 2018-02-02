@@ -1,0 +1,30 @@
+{
+    "usageCount": 2,
+    "type": "script",
+    "store": {},
+    "description": "terminal",
+    "abbreviation": {
+        "wordChars": "[\\w]",
+        "ignoreCase": false,
+        "triggerInside": false,
+        "abbreviations": [],
+        "backspace": true,
+        "immediate": false
+    },
+    "omitTrigger": false,
+    "hotkey": {
+        "modifiers": [
+            "<alt>"
+        ],
+        "hotKey": "s"
+    },
+    "showInTrayMenu": false,
+    "modes": [
+        3
+    ],
+    "prompt": false,
+    "filter": {
+        "isRecursive": false,
+        "regex": null
+    }
+}
