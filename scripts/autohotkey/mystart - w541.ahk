@@ -33,18 +33,6 @@ Else
 	Winminimize
 Return
 
-; 3. notepad ++
-;#n::
-;IfWinNotExist, ahk_class Notepad++
-;	run,c:\Green\npp.6.8.1.bin\notepad++.exe
-;Else
-;	IfWinNotActive ahk_class Notepad++
-;	WinActivate
-;Else
-;	Winminimize
-;Return
-
-
 ; 4、启动chrome。
 #c::
 IfWinNotExist ahk_class Chrome_WidgetWin_1
@@ -69,15 +57,15 @@ Else
 Return
 
 
-; 6、qq
+; 6、potplayer
 #q::
-IfWinNotActive, ahk_class TXGuiFoundation
+IfWinNotActive, ahk_class PotPlayer64
 {
-	WinActivate, ahk_class TXGuiFoundation
+	WinActivate, ahk_class PotPlayer64
 }
 Else
 {
-	WinMinimize, ahk_class TXGuiFoundation
+	WinMinimize, ahk_class PotPlayer64
 }
 Return
 
@@ -90,6 +78,18 @@ IfWinNotActive, ahk_class ConsoleWindowClass
 Else
 {
 	WinMinimize, ahk_class ConsoleWindowClass
+}
+Return
+
+; 8, onenote(Framework::CFrame)
+#o::
+IfWinNotActive, ahk_class Framework::CFrame
+{
+	WinActivate, ahk_class Framework::CFrame
+}
+Else
+{
+	WinMinimize, ahk_class Framework::CFrame
 }
 Return
 
