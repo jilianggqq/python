@@ -1,31 +1,31 @@
 {
-    "prompt": false,
-    "abbreviation": {
-        "wordChars": "[\\w]",
-        "ignoreCase": false,
-        "triggerInside": false,
-        "abbreviations": [
-            "qqsus"
-        ],
-        "backspace": true,
-        "immediate": false
+    "filter": {
+        "regex": "x-terminal-emulator.X-terminal-emulator",
+        "isRecursive": false
     },
+    "showInTrayMenu": false,
+    "omitTrigger": false,
     "hotkey": {
         "modifiers": [],
         "hotKey": null
     },
-    "showInTrayMenu": false,
-    "type": "phrase",
-    "usageCount": 3,
     "description": "Ubuntu Suspend",
-    "filter": {
-        "isRecursive": false,
-        "regex": null
-    },
-    "sendMode": "kb",
     "modes": [
         1
     ],
-    "omitTrigger": false,
-    "matchCase": false
+    "abbreviation": {
+        "ignoreCase": false,
+        "immediate": false,
+        "triggerInside": false,
+        "backspace": true,
+        "wordChars": "[\\w]",
+        "abbreviations": [
+            "qqsus"
+        ]
+    },
+    "type": "phrase",
+    "sendMode": "kb",
+    "prompt": false,
+    "matchCase": false,
+    "usageCount": 3
 }
