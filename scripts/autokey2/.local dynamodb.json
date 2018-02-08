@@ -1,0 +1,31 @@
+{
+    "showInTrayMenu": false,
+    "description": "local dynamodb",
+    "matchCase": false,
+    "hotkey": {
+        "hotKey": null,
+        "modifiers": []
+    },
+    "modes": [
+        1
+    ],
+    "type": "phrase",
+    "sendMode": "kb",
+    "usageCount": 0,
+    "prompt": false,
+    "filter": {
+        "isRecursive": false,
+        "regex": null
+    },
+    "abbreviation": {
+        "backspace": true,
+        "immediate": false,
+        "ignoreCase": false,
+        "abbreviations": [
+            "locddb"
+        ],
+        "triggerInside": false,
+        "wordChars": "[\\w]"
+    },
+    "omitTrigger": false
+}

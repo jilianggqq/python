@@ -1,0 +1,30 @@
+{
+    "usageCount": 0,
+    "hotkey": {
+        "hotKey": "w",
+        "modifiers": [
+            "<alt>"
+        ]
+    },
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "description": "vlc player",
+    "type": "script",
+    "abbreviation": {
+        "ignoreCase": false,
+        "backspace": true,
+        "immediate": false,
+        "triggerInside": false,
+        "wordChars": "[\\w]",
+        "abbreviations": []
+    },
+    "showInTrayMenu": false,
+    "omitTrigger": false,
+    "prompt": false,
+    "store": {},
+    "modes": [
+        3
+    ]
+}
