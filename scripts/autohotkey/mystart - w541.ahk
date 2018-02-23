@@ -1,5 +1,5 @@
 ﻿; 1、启动total commander
-#t::
+!t::
 DetectHiddenWindows, on
 IfWinNotExist ahk_class TTOTAL_CMD
 	run,d:\green\TotalCMD64\Totalcmd64.exe
@@ -12,7 +12,7 @@ DetectHiddenWindows, off
 Return
 
 ; 2. youdao dictionary
-#u::
+!u::
 IfWinNotExist, ahk_class YodaoMainWndClass
 	run, d:\Program Files\Dict\YodaoDict.exe
 Else
@@ -23,7 +23,7 @@ Else
 Return
 
 ; 3. emeditor
-#n::
+!n::
 IfWinNotExist, ahk_class EmEditorMainFrame3
 	run,d:\green\EmEditor14\EmEditor.exe
 Else
@@ -34,7 +34,7 @@ Else
 Return
 
 ; 4、启动chrome。
-#c::
+!c::
 IfWinNotExist ahk_class Chrome_WidgetWin_1
 	run, C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
 Else
@@ -46,7 +46,7 @@ Return
 
 
 ; 5、sublime text。
-#s::
+!s::
 IfWinNotExist ahk_class PX_WINDOW_CLASS
 	run, c:\Program Files\Sublime Text 3\sublime_text.exe
 Else
@@ -58,7 +58,7 @@ Return
 
 
 ; 6、potplayer
-#q::
+!q::
 IfWinNotActive, ahk_class PotPlayer64
 {
 	WinActivate, ahk_class PotPlayer64
@@ -70,7 +70,7 @@ Else
 Return
 
 ; 7、power shell
-#p::
+!p::
 IfWinNotActive, ahk_class ConsoleWindowClass
 {
 	WinActivate, ahk_class ConsoleWindowClass
@@ -81,8 +81,8 @@ Else
 }
 Return
 
-; 8, onenote(Framework::CFrame)
-#o::
+; 8, onenote(Framewo!k::CFrame)
+!o::
 IfWinNotActive, ahk_class Framework::CFrame
 {
 	WinActivate, ahk_class Framework::CFrame
@@ -99,6 +99,12 @@ f2::Send ^{PgUp}
 f3::Send ^{PgDn}
 f1::Send !d
 !q::Send ^w
+::fori::for(int i=0`; i<n`; i{+}{+}){{}{}}
+::forj::for(int j=0`; j<n`; j{+}{+}){{}{}}
+::lstnx::List<> res = new ArrayList<>()`;
+::lstx::ArrayList<>
+::mapx::HashMap<>
+::mapnx::Map<> map = new HashMap<>()`;
 #IfWinActive
 
 ; (2)if qq is being activated, do some hotkey.
